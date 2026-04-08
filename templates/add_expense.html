@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm max-w-md mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-white">
+        <h4 class="mb-0">➕ Add Expense</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label>Title</label>
+                <input type="text" name="title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Amount ({{ CURRENCY }})</label>
+                <input type="number" name="amount" class="form-control" step="0.01" required>
+            </div>
+            <div class="mb-3">
+                <label>Category</label>
+                <select name="category" class="form-select" required>
+                    {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.icon }} {{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row mb-3">
+                <div class="col"><label>Date</label><input type="date" name="date" class="form-control" required></div>
+                <div class="col">
+                    <label>Mode</label>
+                    <select name="payment_mode" class="form-select">
+                        <option>Cash</option><option>Card</option><option>UPI</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Expense</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
