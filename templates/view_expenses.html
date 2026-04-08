@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">📋 All Expenses</h4>
+        <a href="{{ url_for('add_expense') }}" class="btn btn-sm btn-primary">+ Add New</a>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Amount</th>
+                    <th>Mode</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exp in expenses %}
+                <tr>
+                    <td>{{ exp.expense_date }}</td>
+                    <td>{{ exp.category_icon }} {{ exp.category }}</td>
+                    <td>{{ exp.title }}</td>
+                    <td class="text-danger">{{ CURRENCY }}{{ exp.amount }}</td>
+                    <td>{{ exp.payment_mode }}</td>
+                    <td>
+                        <form action="{{ url_for('remove_expense', expense_id=exp.id) }}" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this expense?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
