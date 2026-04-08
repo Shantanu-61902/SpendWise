@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5 class="card-title">Remaining Balance</h5>
+                <h2 class="text-primary">{{ CURRENCY }}{{ summary.monthly_income }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total Income Added</h5>
+                <h2 class="text-success">{{ CURRENCY }}{{ summary.total_income_added }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total Expenses</h5>
+                <h2 class="text-danger">{{ CURRENCY }}{{ summary.monthly_expense }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
